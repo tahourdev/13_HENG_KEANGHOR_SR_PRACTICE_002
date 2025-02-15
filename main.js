@@ -1,18 +1,42 @@
+// ==================================================================================
+// Sample task data stored as an array of objects
+// Each task contains a task name, due date (formatted as YYYY/DD/MM), and priority level
 let tasks = [
   { taskName: 'Complete Javascript Project', date: '2025/23/01', priority: 'High' },
   { taskName: 'Review Team Document', date: '2025/12/02', priority: 'High' },
 ];
 
+// ==================================================================================
+// DOM Element References
+
+// Input field for entering a new task name
 let taskInput = document.getElementById('task-name');
+
+// Button to add a new task
 let addTask = document.getElementById('add-task');
+
+// Input field for selecting the task's due date
 let dateInput = document.getElementById('task-datepicker');
+
+// Dropdown for selecting the task priority (e.g., High, Medium, Low)
 let priorityInput = document.getElementById('task-priority');
-let taskNameError = document.getElementById('task-name-error');
-let taskDateError = document.getElementById('task-date-error');
-let taskPriorityError = document.getElementById('task-priority-error');
+
+// Error message elements for form validation
+let taskNameError = document.getElementById('task-name-error'); // Task name error
+let taskDateError = document.getElementById('task-date-error'); // Task date error
+let taskPriorityError = document.getElementById('task-priority-error'); // Task priority error
+
+// Table body where tasks will be dynamically inserted
 let taskTableBody = document.getElementById('task-table');
 
-// Add task to table
+// Toast notification element for displaying success messages
+const toast = document.getElementById('toast-success');
+
+// Button inside the toast notification to manually close it
+const closeToastBtn = toast.querySelector('button');
+
+// ==================================================================================
+// Funtion to add task to table
 const addTaskToTable = (task) => {
   // Create a new row
   const newRow = document.createElement('tr');
@@ -39,11 +63,10 @@ const addTaskToTable = (task) => {
 
   // Add task status cell with a button
   const taskStatusCell = document.createElement('td');
-  taskStatusCell.className = 'px-6 py-4';
   const statusButton = document.createElement('button');
   statusButton.setAttribute('id', 'status');
   statusButton.className =
-    'py-1.5 text-white px-6 bg-yellow-600 rounded-lg transition-all duration-100 ease-in-out';
+    'py-1.5 text-white px-6 transition-all duration-100 ease-in-out bg-yellow-600 rounded-lg';
   statusButton.textContent = 'Pending';
   taskStatusCell.appendChild(statusButton);
   newRow.appendChild(taskStatusCell);
@@ -52,6 +75,8 @@ const addTaskToTable = (task) => {
   taskTableBody.appendChild(newRow);
 };
 
+// ==================================================================================
+// Function for toggling task status
 taskTableBody.addEventListener('click', (event) => {
   // Find the closest row
   const clickedRow = event.target.closest('tr');
@@ -85,11 +110,34 @@ tasks.forEach((task) => {
   addTaskToTable(task);
 });
 
-// Add new task on button click
+// ==================================================================================
+// Function to display the toast notification when a task is successfully added
+const showToast = () => {
+  toast.classList.remove('opacity-0', 'duration-100', 'ease-linear', '-bottom-5');
+  toast.classList.add('opacity-100', 'duration-300', 'ease-in-out', 'bottom-0');
+
+  // Hide after 3 seconds
+  setTimeout(() => {
+    hideToast();
+  }, 3000);
+};
+
+// Function to hide toast
+const hideToast = () => {
+  toast.classList.remove('opacity-100', 'duration-300', 'ease-in-out', 'bottom-0');
+  toast.classList.add('opacity-0', 'duration-100', 'ease-linear', '-bottom-5');
+};
+
+// Handle manual close
+closeToastBtn.addEventListener('click', hideToast);
+
+// ==================================================================================
+// Function to add a new task when the "Add Task" button is clicked
 addTask.addEventListener('click', () => {
   let isValid = true;
 
-  // Validate task name
+  // ==================================================================================
+  // Validate Task Name Input
   if (taskInput.value.trim() === '') {
     taskNameError.classList.remove('hidden');
     taskInput.classList.add('!border-red-500');
@@ -99,7 +147,8 @@ addTask.addEventListener('click', () => {
     taskInput.classList.remove('!border-red-500');
   }
 
-  // Validate date picker
+  // ==================================================================================
+  // Validate Task Date Input
   if (dateInput.value === '') {
     taskDateError.classList.remove('hidden');
     dateInput.classList.add('!border-red-500');
@@ -120,7 +169,8 @@ addTask.addEventListener('click', () => {
     }
   }
 
-  // Validate priority
+  // ==================================================================================
+  // Validate Task Priority Selection
   if (priorityInput.value === 'Choose Priority') {
     taskPriorityError.classList.remove('hidden');
     priorityInput.classList.add('!border-red-500');
@@ -130,7 +180,8 @@ addTask.addEventListener('click', () => {
     priorityInput.classList.remove('!border-red-500');
   }
 
-  // If valid, add task
+  // ==================================================================================
+  // If all inputs are valid, proceed to add the task
   if (isValid) {
     const taskName = taskInput.value.trim();
     const taskDate = dateInput.value;
@@ -158,6 +209,6 @@ addTask.addEventListener('click', () => {
     dateInput.value = '';
     priorityInput.value = 'Choose Priority';
 
-    alert('Task added successfully!');
+    showToast();
   }
 });
