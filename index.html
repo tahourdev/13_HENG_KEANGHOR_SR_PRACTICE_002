@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Management</title>
+    <title>Task Todo</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
@@ -14,7 +14,6 @@
     </script>
 
     <script>
-      // Check localStorage and system preference for dark mode
       if (
         localStorage.getItem('color-theme') === 'dark' ||
         (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -64,7 +63,6 @@
 
       <section class="container mx-auto mt-10">
         <div class="w-full flex justify-start">
-          <!-- <h1 class="text-3xl font-bold pb-8">Task Task</h1> -->
           <h1 class="text-3xl dark:text-white text-slate-900 font-bold pb-8">Add Task</h1>
         </div>
         <div

@@ -55,6 +55,7 @@ const addTaskToTable = (task) => {
 taskTableBody.addEventListener('click', (event) => {
   // Find the closest row
   const clickedRow = event.target.closest('tr');
+  console.log(clickedRow);
 
   // Ensure the click is inside a valid row
   if (!clickedRow) return;
