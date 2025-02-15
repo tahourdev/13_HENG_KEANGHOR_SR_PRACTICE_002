@@ -26,11 +26,11 @@
   </head>
   <body>
     <main class="bg-white dark:bg-gray-800 h-screen">
-      <div class="flex justify-center">
-        <h1 class="text-3xl font-bold mt-10 dark:text-white text-slate-900">
+      <div class="flex justify-center gap-6 items-center px-10">
+        <h1 class="md:text-3xl text-xl font-bold mt-10 dark:text-white text-slate-900">
           Hiiii Guys, This is our practice 3
         </h1>
-        <div class="mt-10 ml-10">
+        <div class="mt-10">
           <!-- darkmode toggle -->
           <button
             id="theme-toggle"
@@ -61,14 +61,16 @@
         </div>
       </div>
 
-      <section class="container mx-auto mt-10">
-        <div class="w-full flex justify-start">
-          <h1 class="text-3xl dark:text-white text-slate-900 font-bold pb-8">Add Task</h1>
+      <section class="container mx-auto mt-10 px-10 md:px-0">
+        <div class="w-full">
+          <h1 class="text-center md:text-3xl text-xl dark:text-white text-slate-900 font-bold pb-8">
+            Add Task
+          </h1>
         </div>
         <div
-          class="bg-white dark:border-gray-600 dark:bg-gray-700 shadow-md border rounded-lg p-10 flex justify-between">
+          class="bg-white dark:border-gray-600 dark:bg-gray-700 shadow-md border gap-10 rounded-lg p-10 flex flex-col lg:flex-row justify-between">
           <div class="flex-1 w-full">
-            <div class="mt-5 max-w-md">
+            <div class="mt-5 lg:max-w-md w-full">
               <label for="success" class="block mb-2 text-sm font-bold dark:text-gray-400 text-slate-900">
                 Task Name
               </label>
@@ -90,7 +92,7 @@
               Choose Date
             </label>
             <div>
-              <div class="relative max-w-md">
+              <div class="relative lg:max-w-md w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                   <svg
                     class="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -116,7 +118,7 @@
 
             <!-- Priority Selection -->
 
-            <form class="max-w-md mt-6">
+            <form class="lg:max-w-md w-full mt-6">
               <label for="priority" class="block mb-2 text-sm font-bold dark:text-gray-400 text-slate-900">
                 Priority
               </label>
